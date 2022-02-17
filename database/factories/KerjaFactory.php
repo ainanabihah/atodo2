@@ -2,9 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Kerja;
 use App\Models\Senarai;
-use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,12 +15,11 @@ class KerjaFactory extends Factory
      *
      * @return array
      */
-
     public function definition()
     {
         return [
-            'name' => $this->faker->name(),
-            'status'=> $this->faker->randomElement([1, 0]),
+            'name' => $this->faker->firstName(),
+            'status' => $this->faker->randomElement([0, 1]),
             'senarai_id' => Senarai::factory(),
         ];
     }

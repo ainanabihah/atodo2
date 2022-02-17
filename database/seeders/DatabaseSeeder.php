@@ -18,13 +18,14 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
+
         // User::factory(10)->create();
         // Senarai::factory(10)->create();
         // Kerja::factory(10)->create();
 
         User::factory(10)
-        ->has(Senarai::factory(10)
-            ->has(Kerja::factory(10)))
-        ->create();
+            ->has(Senarai::factory(10)
+                ->has(Kerja::factory(10)))
+            ->create();
     }
 }

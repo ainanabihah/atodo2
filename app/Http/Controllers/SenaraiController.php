@@ -14,7 +14,7 @@ class SenaraiController extends Controller
      */
     public function index()
     {
-        //
+        return inertia('Senarai/SenaraiIndex');
     }
 
     /**
