@@ -5,7 +5,11 @@
         </template>
 
         <senarai-form />
-        <senarai-list />
+        <senarai-list :senarais="senarais" />
+
+        <!-- <p class="text-danger" v-for="(item, index) in list" :key="index">
+            {{ item.name }}
+        </p> -->
     </app-layout>
 </template>
 
@@ -13,7 +17,8 @@
 import { defineComponent } from "vue";
 import AppLayout from "@/Layouts/AppLayout.vue";
 import SenaraiForm from "@/Pages/Senarai/SenaraiForm.vue";
-import SenaraiList from "./SenaraiList.vue";
+import SenaraiList from "@/Pages/Senarai/SenaraiList.vue";
+// import SenaraiList from "./SenaraiList.vue";  dia direct create ritu
 
 export default defineComponent({
     components: {
@@ -21,5 +26,16 @@ export default defineComponent({
         SenaraiForm,
         SenaraiList,
     },
+    props: {
+        senarais: {
+            type: Array,
+            required: true,
+        },
+    },
+    // data() {
+    //     return {
+    //         list: this.senarais,
+    //     };
+    // },
 });
 </script>

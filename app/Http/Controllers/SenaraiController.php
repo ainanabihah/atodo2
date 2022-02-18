@@ -14,7 +14,11 @@ class SenaraiController extends Controller
      */
     public function index()
     {
-        return inertia('Senarai/SenaraiIndex');
+        $user = auth()->user();
+        return inertia('Senarai/SenaraiIndex',[
+            // 'senarais' => Senarai::all(),
+            'senarais' => $user->senarais,
+        ]);
     }
 
     /**
@@ -35,8 +39,26 @@ class SenaraiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string'
+        ]);
+
+        $user = auth()->user();
+        //shortcut style
+        //$new = new Senarai(['name' => $validated['name']]);
+        //$user->senarais()->save($new);
+
+        $new = new Senarai();
+        $new ->name = $validated['name'];
+        $new->user_id = $user->id;
+        $new->save();
+
+        return redirect()->back();
     }
+
+
+
+
 
     /**
      * Display the specified resource.
@@ -80,6 +102,8 @@ class SenaraiController extends Controller
      */
     public function destroy(Senarai $senarai)
     {
-        //
+        $senarai->delete();
+
+        return redirect()->back();
     }
 }
