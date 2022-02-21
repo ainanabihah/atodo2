@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\KerjaController;
 use App\Http\Controllers\SenaraiController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -30,5 +31,14 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
-    Route::resource('senarais', SenaraiController::class);
+
+    //method1
+    // Route::resource('senarais', SenaraiController::class);
+    // Route::resource('kerjas', KerjaController::class);
+
+    //method2
+    Route::resources([
+        'senarais' => SenaraiController::class,
+        'kerjas' => KerjaController::class,
+    ]);
 });

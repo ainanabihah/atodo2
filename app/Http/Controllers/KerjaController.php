@@ -35,7 +35,17 @@ class KerjaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string',
+            'senarai_id' => 'required|exists:senarais,id',
+        ]);
+
+        $new = new Kerja();
+        $new->name = $validated['name'];
+        $new->senarai_id = $validated['senarai_id'];
+        $new->save();
+
+        return redirect()->back();
     }
 
     /**
@@ -80,6 +90,8 @@ class KerjaController extends Controller
      */
     public function destroy(Kerja $kerja)
     {
-        //
+        $kerja->delete();
+
+        return redirect()->back();
     }
 }
