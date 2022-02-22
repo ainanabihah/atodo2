@@ -68,6 +68,8 @@ class SenaraiController extends Controller
      */
     public function show(Senarai $senarai)
     {
+        $this->authorize('view',$senarai);
+
         // dd($senarai);
         return inertia('Senarai/SenaraiShow' ,[
             'kerjas' => $senarai->kerjas,
